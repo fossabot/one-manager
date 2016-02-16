@@ -1,0 +1,9 @@
+django==1.9.2
+djangorestframework==3.3.2
+
+Markdown
+django-filter
+django-crispy-forms
+django-guardian
+
+python-social-auth
