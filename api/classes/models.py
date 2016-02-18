@@ -1,10 +1,22 @@
 from __future__ import unicode_literals
 
 from django.db import models
+from school.models import School
 
 
 class Classes(models.Model):
-    classes_id = models.AutoField(primary_key=True)
-    year = models.DecimalField(max_digits=4, null=False)
-    grade = models.PositiveSmallIntegerField(default=1)
-    semester = models.PositiveSmallIntegerField(default=1)
+    school = models.ForeignKey(School)
+    year = models.PositiveSmallIntegerField()
+    grade = models.PositiveSmallIntegerField()
+    class_name = models.CharField(max_length=50)
+
+    class Meta:
+        db_table = 'classes'
+
+
+class Semester(models.Model):
+    classes = models.ForeignKey(Classes)
+    semester = models.CharField(max_length=30, db_index=True)
+
+    class Meta:
+        db_table = 'semester'

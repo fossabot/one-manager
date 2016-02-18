@@ -1,21 +1,60 @@
 from __future__ import unicode_literals
 
 from django.db import models
+from classes.models import Classes, Semester
 
 
 class Student(models.Model):
-    GENDER_CHOISES = (
+    GENDER_CHOICES = (
         ('M', 'Male'),
         ('F', 'Female'),
     )
 
-    student_id = models.AutoField(primary_key=True)
+    classes = models.ForeignKey(Classes)
     number = models.PositiveSmallIntegerField()
-    name = models.CharField(max_length=50)
-    gender = models.CharField(max_length=1, choices=GENDER_CHOISES, default='M')
+    name = models.CharField(max_length=100)
+    gender = models.CharField(max_length=1, choices=GENDER_CHOICES, default='M')
+    birthday = models.DateField()
+
+    class Meta:
+        db_table = 'student'
 
 
-class StudentParents(models.Model):
-    parent_id = models.AutoField(primary_key=True)
-    student = models.ForeignKey(Student, on_delete=True, related_name='student_parents')
+class StudentProfile(models.Model):
+    student = models.ForeignKey(Student)
+    address = models.CharField(max_length=255)
+    tel = models.CharField(max_length=20)
+    email = models.EmailField(max_length=50)
+    uniqueness = models.TextField()
+
+    class Meta:
+        db_table = 'student_profile'
+
+
+class StudentFamilies(models.Model):
+    RELATIONSHIP_CHOICES = (
+        ('F', 'Father'),
+        ('M', 'Mother'),
+        ('B', 'Brother'),
+        ('S', 'Sister'),
+        ('GF', 'Grand Father'),
+        ('GM', 'Grand Mother'),
+    )
+
+    student = models.ForeignKey(Student)
+    relationship = models.CharField(max_length=1, choices=RELATIONSHIP_CHOICES)
     name = models.CharField(max_length=50)
+
+    class Meta:
+        db_table = 'student_families'
+
+
+class StudentFamiliesProfile(models.Model):
+    student_families = models.ForeignKey(StudentFamilies)
+    address = models.CharField(max_length=255)
+    tel = models.CharField(max_length=20)
+    email = models.EmailField(max_length=50)
+    uniqueness = models.TextField()
+
+    class Meta:
+        db_table = 'student_families_profile'

@@ -71,3 +71,4 @@ pip-selfcheck.json
 
 .idea/
 .DS_Store
+db.sqlite*
