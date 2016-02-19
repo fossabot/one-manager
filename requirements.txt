@@ -6,4 +6,8 @@ django-filter
 django-crispy-forms
 django-guardian
 
+django-extensions
+
 python-social-auth
+
+bpython
