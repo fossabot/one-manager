@@ -13,7 +13,7 @@ class CodeSubject(models.Model):
 
 
 class CodeSubjectTemplate(models.Model):
-    semester = models.ForeignKey(Semester)
+    semester = models.ForeignKey(Semester, related_name='code_subject_template')
     code = models.ForeignKey(CodeSubject)
 
     class Meta:

@@ -7,17 +7,17 @@ from common.models import CodeSubjectTemplate
 
 
 class Score(models.Model):
-    classes = models.ForeignKey(Classes)
-    semester = models.ForeignKey(Semester)
+    classes = models.ForeignKey(Classes, related_name='score')
+    semester = models.ForeignKey(Semester, related_name='score')
 
     class Meta:
         db_table = 'score'
 
 
 class ScoreData(models.Model):
-    score = models.ForeignKey(Score)
-    student = models.ForeignKey(Student)
-    subject = models.ForeignKey(CodeSubjectTemplate)
+    score = models.ForeignKey(Score, related_name='score_data')
+    student = models.ForeignKey(Student, related_name='score_data')
+    subject = models.ForeignKey(CodeSubjectTemplate, related_name='score_data')
     score_data = models.FloatField()
 
     class Meta:
@@ -26,9 +26,9 @@ class ScoreData(models.Model):
 
 
 class ScoreSummarySubject(models.Model):
-    score = models.ForeignKey(Score)
-    student = models.ForeignKey(Student)
-    subject = models.ForeignKey(CodeSubjectTemplate)
+    score = models.ForeignKey(Score, related_name='score_summary_subject')
+    student = models.ForeignKey(Student, related_name='score_summary_subject')
+    subject = models.ForeignKey(CodeSubjectTemplate, related_name='score_summary_subject')
     total = models.FloatField()
     average = models.FloatField()
 
@@ -38,8 +38,8 @@ class ScoreSummarySubject(models.Model):
 
 
 class ScoreSummaryTotal(models.Model):
-    score = models.ForeignKey(Score)
-    student = models.ForeignKey(Student)
+    score = models.ForeignKey(Score, related_name='score_summary_total')
+    student = models.ForeignKey(Student, related_name='score_summary_total')
     total = models.FloatField()
     average = models.FloatField()
 

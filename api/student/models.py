@@ -10,7 +10,7 @@ class Student(models.Model):
         ('F', 'Female'),
     )
 
-    classes = models.ForeignKey(Classes)
+    classes = models.ForeignKey(Classes, related_name='classes')
     number = models.PositiveSmallIntegerField()
     name = models.CharField(max_length=100)
     gender = models.CharField(max_length=1, choices=GENDER_CHOICES, default='M')
@@ -21,7 +21,7 @@ class Student(models.Model):
 
 
 class StudentProfile(models.Model):
-    student = models.ForeignKey(Student)
+    student = models.ForeignKey(Student, related_name='profile')
     address = models.CharField(max_length=255)
     tel = models.CharField(max_length=20)
     email = models.EmailField(max_length=50)
@@ -41,7 +41,7 @@ class StudentFamilies(models.Model):
         ('GM', 'Grand Mother'),
     )
 
-    student = models.ForeignKey(Student)
+    student = models.ForeignKey(Student, related_name='families')
     relationship = models.CharField(max_length=1, choices=RELATIONSHIP_CHOICES)
     name = models.CharField(max_length=50)
 
@@ -50,7 +50,7 @@ class StudentFamilies(models.Model):
 
 
 class StudentFamiliesProfile(models.Model):
-    student_families = models.ForeignKey(StudentFamilies)
+    student_families = models.ForeignKey(StudentFamilies, related_name='profile')
     address = models.CharField(max_length=255)
     tel = models.CharField(max_length=20)
     email = models.EmailField(max_length=50)
