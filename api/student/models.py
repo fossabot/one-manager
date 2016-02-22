@@ -10,7 +10,7 @@ class Student(models.Model):
         ('F', 'Female'),
     )
 
-    classes = models.ForeignKey(Classes, related_name='classes')
+    classes = models.ForeignKey(Classes, related_name='students')
     number = models.PositiveSmallIntegerField()
     name = models.CharField(max_length=100)
     gender = models.CharField(max_length=1, choices=GENDER_CHOICES, default='M')
