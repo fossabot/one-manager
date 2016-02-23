@@ -10,11 +10,17 @@ class Student(models.Model):
         ('F', 'Female'),
     )
 
+    STATUS_CHOICES = (
+        ('N', 'Normal'),
+        ('T', 'Transfer'),
+    )
+
     classes = models.ForeignKey(Classes, related_name='students')
     number = models.PositiveSmallIntegerField()
     name = models.CharField(max_length=100)
-    gender = models.CharField(max_length=1, choices=GENDER_CHOICES, default='M')
+    gender = models.CharField(max_length=1, choices=GENDER_CHOICES)
     birthday = models.DateField()
+    status = models.CharField(max_length=1, choices=STATUS_CHOICES, default='N')
 
     class Meta:
         db_table = 'student'
@@ -58,3 +64,12 @@ class StudentFamiliesProfile(models.Model):
 
     class Meta:
         db_table = 'student_families_profile'
+
+
+class StudentHistory(models.Model):
+    student = models.ForeignKey(Student, related_name='history')
+    description = models.TextField()
+    create_dt = models.DateTimeField(auto_now_add=True)
+
+    class Meta:
+        db_table = 'student_history'
