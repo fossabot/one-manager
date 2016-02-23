@@ -7,6 +7,8 @@ django-crispy-forms
 django-guardian
 
 django-extensions
+django-rest-swagger
+drfdocs
 
 python-social-auth
 
