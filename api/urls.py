@@ -15,11 +15,21 @@ Including another URLconf
 """
 from django.conf.urls import url, include
 from django.contrib import admin
+from rest_framework.routers import DefaultRouter
+from auth.views import UserViewSet
+from school.views import SchoolViewSet
+from classes.views import ClassesViewSet, SemesterViewSet
+
+router = DefaultRouter()
+router.register(r'users', UserViewSet)
+router.register(r'school', SchoolViewSet)
+router.register(r'classes', ClassesViewSet)
+router.register(r'semester', SemesterViewSet)
 
 urlpatterns = [
     url(r'^admin/', admin.site.urls),
+    url(r'^api-auth/', include('rest_framework.urls', namespace='rest_framework')),
     url(r'^docs/swagger/', include('rest_framework_swagger.urls')),
     url(r'^docs/drf/', include('rest_framework_docs.urls')),
-    url(r'^api/school/', include('school.urls')),
-    url(r'^api/classes/', include('classes.urls')),
+    url(r'^api/', include(router.urls)),
 ]

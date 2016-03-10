@@ -15,6 +15,12 @@ class Classes(models.Model):
     class Meta:
         db_table = 'classes'
 
+    def __str__(self):
+        return 'School : %s, Year : %d, Grade : %d, Class : %s' % (self.school.name,
+                                                                   self.year,
+                                                                   self.grade,
+                                                                   self.class_name)
+
 
 class Semester(models.Model):
     classes = models.ForeignKey(Classes, related_name='semester')
@@ -22,3 +28,6 @@ class Semester(models.Model):
 
     class Meta:
         db_table = 'semester'
+
+    def __str__(self):
+        return self.semester

@@ -10,3 +10,6 @@ class School(models.Model):
 
     class Meta:
         db_table = 'school'
+
+    def __str__(self):
+        return self.name
