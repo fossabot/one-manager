@@ -1,7 +1,7 @@
 from __future__ import unicode_literals
 
 from django.db import models
-from classes.models import Semester
+from classes.models import Semesters
 
 
 class CodeSubject(models.Model):
@@ -13,7 +13,7 @@ class CodeSubject(models.Model):
 
 
 class CodeSubjectTemplate(models.Model):
-    semester = models.ForeignKey(Semester, related_name='code_subject_template')
+    semester = models.ForeignKey(Semesters, related_name='code_subject_template')
     code = models.ForeignKey(CodeSubject)
 
     class Meta:

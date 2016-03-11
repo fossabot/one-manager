@@ -19,12 +19,14 @@ from rest_framework.routers import DefaultRouter
 from auth.views import UserViewSet
 from school.views import SchoolViewSet
 from classes.views import ClassesViewSet, SemesterViewSet
+from students.views import StudentsViewSet
 
 router = DefaultRouter()
 router.register(r'users', UserViewSet)
 router.register(r'school', SchoolViewSet)
 router.register(r'classes', ClassesViewSet)
 router.register(r'semester', SemesterViewSet)
+router.register(r'students', StudentsViewSet)
 
 urlpatterns = [
     url(r'^admin/', admin.site.urls),
@@ -33,3 +35,16 @@ urlpatterns = [
     url(r'^docs/drf/', include('rest_framework_docs.urls')),
     url(r'^api/', include(router.urls)),
 ]
+
+"""
+/school - School list / create
+/shcool/pk - School detail / update / delete
+/school/pk/classes - Classes list in school's pk
+/classes - Classes list / create
+/classes/pk - Classes detail / update / delete
+/classes/pk/semester - Semester list in classes's pk
+/semester - Semester list / create
+/semester/pk - Semester detail / update / delete
+/semester/pk/students - Student list in semester's pk
+/students - Student
+"""

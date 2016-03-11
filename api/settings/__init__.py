@@ -48,7 +48,7 @@ INSTALLED_APPS = [
 
     'school',
     'classes',
-    'student',
+    'students',
     'attendance',
     'score',
     'common',

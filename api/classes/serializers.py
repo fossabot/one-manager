@@ -1,14 +1,16 @@
-from rest_framework.serializers import ModelSerializer, ModelField
-from classes.models import Classes, Semester
+from rest_framework import serializers
+from classes.models import Classes, Semesters
+from school.serializers import SchoolSerializer
 
 
-class ClassesSerializer(ModelSerializer):
+class ClassesSerializer(serializers.ModelSerializer):
     class Meta:
         model = Classes
-        fields = ('id', 'school', 'teacher', 'year', 'grade', 'class_name')
 
 
-class SemesterSerializer(ModelSerializer):
+class SemestersSerializer(serializers.ModelSerializer):
+    school = SchoolSerializer
+    classes = ClassesSerializer
+
     class Meta:
-        model = Semester
-        fields = ('id', 'semester', 'classes')
+        model = Semesters

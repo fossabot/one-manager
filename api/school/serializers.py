@@ -5,4 +5,4 @@ from rest_framework.serializers import ModelSerializer
 class SchoolSerializer(ModelSerializer):
     class Meta:
         model = School
-        fields = ('id', 'name', 'address', 'homepage')
+        fields = ('url', 'id', 'name', 'address', 'homepage')
