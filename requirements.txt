@@ -1,5 +1,5 @@
-django==1.9.2
-djangorestframework==3.3.2
+django
+djangorestframework
 
 Markdown
 django-filter
