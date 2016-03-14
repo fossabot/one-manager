@@ -15,36 +15,47 @@ Including another URLconf
 """
 from django.conf.urls import url, include
 from django.contrib import admin
-from rest_framework.routers import DefaultRouter
+from rest_framework_nested.routers import DefaultRouter, SimpleRouter, NestedSimpleRouter
 from auth.views import UserViewSet
 from school.views import SchoolViewSet
 from classes.views import ClassesViewSet, SemesterViewSet
 from students.views import StudentsViewSet
 
-router = DefaultRouter()
-router.register(r'users', UserViewSet)
-router.register(r'school', SchoolViewSet)
-router.register(r'classes', ClassesViewSet)
-router.register(r'semester', SemesterViewSet)
-router.register(r'students', StudentsViewSet)
+root_router = DefaultRouter()
+root_router.register(r'users', UserViewSet)
+root_router.register(r'school', SchoolViewSet)
+root_router.register(r'classes', ClassesViewSet)
+root_router.register(r'semester', SemesterViewSet)
+root_router.register(r'student', StudentsViewSet)
+
+
+school_router = SimpleRouter()
+school_router.register('school', SchoolViewSet)
+school_classes_router = NestedSimpleRouter(school_router, 'school', lookup='school')
+school_classes_router.register('classes', ClassesViewSet, base_name='school-classes')
+school_classes_semester_router = NestedSimpleRouter(school_classes_router, 'classes', lookup='classes')
+school_classes_semester_router.register('semester', SemesterViewSet, base_name='school-classes-semester')
+school_classes_student_router = NestedSimpleRouter(school_classes_router, 'classes', lookup='classes')
+school_classes_student_router.register('student', StudentsViewSet, base_name='school-classes-student')
+
+classes_router = SimpleRouter()
+classes_router.register('classes', ClassesViewSet)
+classes_semester_router = NestedSimpleRouter(classes_router, 'classes', lookup='classes')
+classes_semester_router.register('semester', SemesterViewSet, base_name='classes-semester')
+classes_student_router = NestedSimpleRouter(classes_router, 'classes', lookup='classes')
+classes_student_router.register('student', StudentsViewSet, base_name='classes-student')
 
 urlpatterns = [
     url(r'^admin/', admin.site.urls),
     url(r'^api-auth/', include('rest_framework.urls', namespace='rest_framework')),
     url(r'^docs/swagger/', include('rest_framework_swagger.urls')),
     url(r'^docs/drf/', include('rest_framework_docs.urls')),
-    url(r'^api/', include(router.urls)),
+    url(r'^api/', include(root_router.urls)),
+    url(r'^api/', include(school_router.urls)),
+    url(r'^api/', include(school_classes_router.urls)),
+    url(r'^api/', include(school_classes_semester_router.urls)),
+    url(r'^api/', include(school_classes_student_router.urls)),
+    url(r'^api/', include(classes_router.urls)),
+    url(r'^api/', include(classes_semester_router.urls)),
+    url(r'^api/', include(classes_student_router.urls)),
 ]
-
-"""
-/school - School list / create
-/shcool/pk - School detail / update / delete
-/school/pk/classes - Classes list in school's pk
-/classes - Classes list / create
-/classes/pk - Classes detail / update / delete
-/classes/pk/semester - Semester list in classes's pk
-/semester - Semester list / create
-/semester/pk - Semester detail / update / delete
-/semester/pk/students - Student list in semester's pk
-/students - Student
-"""

@@ -5,8 +5,10 @@ Markdown
 django-filter
 django-crispy-forms
 django-guardian
-
 django-extensions
+drf-extensions
+drf-nested-routers
+
 django-rest-swagger
 drfdocs
 

@@ -1,3 +1,4 @@
+# -*- coding: utf-8 -*-
 from __future__ import unicode_literals
 
 from datetime import datetime
@@ -16,17 +17,21 @@ class Classes(models.Model):
     teacher = models.ForeignKey(User, related_name='classes')
     year = models.PositiveSmallIntegerField(choices=YEAR_CHOICES, default=datetime.now().year, null=False)
     grade = models.CharField(max_length=10, null=False)
-    class_name = models.CharField(max_length=50, null=False)
+    classes = models.CharField(max_length=10, null=False)
+    classes_name = models.CharField(max_length=50, null=False)
 
     class Meta:
         db_table = 'classes'
-        unique_together = ('school', 'teacher', 'year', 'grade', 'class_name')
+        unique_together = ('school', 'teacher', 'year', 'grade', 'classes')
 
     def __str__(self):
-        return 'School : %s, Year : %d, Grade : %s, Class : %s' % (self.school.name,
-                                                                   self.year,
-                                                                   self.grade,
-                                                                   self.class_name)
+        return '<Classes - %s학교 %d년 %s학년 %s반 (%s)>' % (
+            self.school.name,
+            self.year,
+            self.grade,
+            self.classes,
+            self.classes_name
+        )
 
 
 class Semesters(models.Model):
@@ -38,4 +43,11 @@ class Semesters(models.Model):
         unique_together = ('classes', 'semester')
 
     def __str__(self):
-        return self.semester
+        return '<Classes - %s학교 %d년 %s학년 %s반 (%s) %s학기>' % (
+            self.classes.school.name,
+            self.classes.year,
+            self.classes.grade,
+            self.classes.classes,
+            self.classes.classes_name,
+            self.semester
+        )

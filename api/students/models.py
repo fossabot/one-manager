@@ -12,7 +12,7 @@ class Students(models.Model):
 
     STATUS_CHOICES = (
         ('N', 'Normal'),
-        ('T', 'Transfer'),
+        ('T', 'Transferred'),
     )
 
     classes = models.ForeignKey(Classes, related_name='students')
@@ -24,10 +24,11 @@ class Students(models.Model):
 
     class Meta:
         db_table = 'students'
+        ordering = ('number',)
 
 
 class StudentsProfile(models.Model):
-    student = models.ForeignKey(Students, related_name='profile')
+    student = models.OneToOneField(Students, related_name='profile')
     address = models.CharField(max_length=255)
     tel = models.CharField(max_length=20)
     email = models.EmailField(max_length=50)
@@ -35,6 +36,21 @@ class StudentsProfile(models.Model):
 
     class Meta:
         db_table = 'students_profile'
+
+
+class StudentsContact(models.Model):
+    CONTACT_TYPE = (
+        ('H', 'Home'),
+        ('M', 'Mobile'),
+        ('O', 'Other'),
+    )
+
+    profile = models.ForeignKey(StudentsProfile, related_name='contact')
+    contact_type = models.CharField(max_length=2, choices=CONTACT_TYPE, null=False)
+    contact = models.CharField(max_length=30, null=False)
+
+    class Meta:
+        db_table = 'students_profile_contact'
 
 
 class StudentsFamilies(models.Model):

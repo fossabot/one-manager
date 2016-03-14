@@ -794,7 +794,8 @@
             "teacher":1,
             "year":2016,
             "grade":1,
-            "class_name":"test class"
+            "classes": "1",
+            "classes_name":"test class 1"
         }
     },
     {
