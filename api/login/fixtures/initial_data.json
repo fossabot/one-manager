@@ -1,0 +1,46 @@
+[
+    {
+        "model":"auth.user",
+        "pk":1,
+        "fields":{
+            "password":"pbkdf2_sha256$24000$96Q9Cy4muufz$2ULe8ERVuVTonwG4O6jCqXptDWc/1Th4wQZc4QWsa9k=",
+            "last_login":null,
+            "is_superuser":true,
+            "username":"kucuny",
+            "first_name":"",
+            "last_name":"",
+            "email":"kucuny@gmail.com",
+            "is_staff":true,
+            "is_active":true,
+            "date_joined":"2016-03-17T04:13:01.828Z",
+            "groups":[
+
+            ],
+            "user_permissions":[
+
+            ]
+        }
+    },
+    {
+        "model":"auth.user",
+        "pk":2,
+        "fields":{
+            "password":"pbkdf2_sha256$24000$Y86GhqLzEywd$UYiqkKBAzCqgcdRUW2nc1hrgNfKGskyfzXGeu3+cMsk=",
+            "last_login":null,
+            "is_superuser":true,
+            "username":"gprnr",
+            "first_name":"",
+            "last_name":"",
+            "email":"gprnr1004@gmail.com",
+            "is_staff":true,
+            "is_active":true,
+            "date_joined":"2016-03-17T04:16:05.106Z",
+            "groups":[
+
+            ],
+            "user_permissions":[
+
+            ]
+        }
+    }
+]

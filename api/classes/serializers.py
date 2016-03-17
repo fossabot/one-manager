@@ -1,16 +1,16 @@
 from rest_framework import serializers
-from classes.models import Classes, Semesters
-from students.serializers import StudentsSerializer
+from classes.models import Classes, Semester
+from student.serializers import StudentSerializer
 
 
-class SemestersSerializer(serializers.ModelSerializer):
+class SemesterSerializer(serializers.ModelSerializer):
     class Meta:
-        model = Semesters
+        model = Semester
 
 
 class ClassesSerializer(serializers.ModelSerializer):
-    semesters = SemestersSerializer(many=True, read_only=True)
-    students = StudentsSerializer(many=True, read_only=True)
+    semesters = SemesterSerializer(many=True, read_only=True)
+    students = StudentSerializer(many=True, read_only=True)
 
     class Meta:
         model = Classes

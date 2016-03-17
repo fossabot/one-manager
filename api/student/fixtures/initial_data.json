@@ -1,0 +1,28 @@
+[
+    {
+        "model":"student.student",
+        "pk":1,
+        "fields":{
+            "user":1,
+            "classes":1,
+            "number":1,
+            "name":"Kookheon Kwon",
+            "gender":"M",
+            "birthday":"1981-12-05",
+            "status":"N"
+        }
+    },
+    {
+        "model":"student.student",
+        "pk":2,
+        "fields":{
+            "user":2,
+            "classes":1,
+            "number":2,
+            "name":"Hyejeong Park",
+            "gender":"F",
+            "birthday":"1981-11-20",
+            "status":"N"
+        }
+    }
+]

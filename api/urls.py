@@ -16,17 +16,17 @@ Including another URLconf
 from django.conf.urls import url, include
 from django.contrib import admin
 from rest_framework_nested.routers import DefaultRouter, SimpleRouter, NestedSimpleRouter
-from auth.views import UserViewSet
+from login.views import UserViewSet
 from school.views import SchoolViewSet
 from classes.views import ClassesViewSet, SemesterViewSet
-from students.views import StudentsViewSet
+from student.views import StudentViewSet
 
 root_router = DefaultRouter()
 root_router.register(r'users', UserViewSet)
 root_router.register(r'school', SchoolViewSet)
 root_router.register(r'classes', ClassesViewSet)
 root_router.register(r'semester', SemesterViewSet)
-root_router.register(r'student', StudentsViewSet)
+root_router.register(r'student', StudentViewSet)
 
 
 school_router = SimpleRouter()
@@ -36,16 +36,17 @@ school_classes_router.register('classes', ClassesViewSet, base_name='school-clas
 school_classes_semester_router = NestedSimpleRouter(school_classes_router, 'classes', lookup='classes')
 school_classes_semester_router.register('semester', SemesterViewSet, base_name='school-classes-semester')
 school_classes_student_router = NestedSimpleRouter(school_classes_router, 'classes', lookup='classes')
-school_classes_student_router.register('student', StudentsViewSet, base_name='school-classes-student')
+school_classes_student_router.register('student', StudentViewSet, base_name='school-classes-student')
 
 classes_router = SimpleRouter()
 classes_router.register('classes', ClassesViewSet)
 classes_semester_router = NestedSimpleRouter(classes_router, 'classes', lookup='classes')
 classes_semester_router.register('semester', SemesterViewSet, base_name='classes-semester')
 classes_student_router = NestedSimpleRouter(classes_router, 'classes', lookup='classes')
-classes_student_router.register('student', StudentsViewSet, base_name='classes-student')
+classes_student_router.register('student', StudentViewSet, base_name='classes-student')
 
 urlpatterns = [
+    url(r'^o/', include('oauth2_provider.urls', namespace='oauth2_provider')),
     url(r'^admin/', admin.site.urls),
     url(r'^api-auth/', include('rest_framework.urls', namespace='rest_framework')),
     url(r'^docs/swagger/', include('rest_framework_swagger.urls')),

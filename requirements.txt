@@ -1,17 +1,18 @@
 django
-djangorestframework
-
-Markdown
 django-filter
 django-crispy-forms
 django-guardian
 django-extensions
+
+djangorestframework
 drf-extensions
 drf-nested-routers
-
-django-rest-swagger
 drfdocs
+django-rest-swagger
 
-python-social-auth
+django-oauth-toolkit
 
+Markdown
 bpython
+
+django-debug-toolbar

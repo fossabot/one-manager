@@ -34,12 +34,12 @@ class Classes(models.Model):
         )
 
 
-class Semesters(models.Model):
+class Semester(models.Model):
     classes = models.ForeignKey(Classes, related_name='semesters')
     semester = models.CharField(max_length=30, db_index=True)
 
     class Meta:
-        db_table = 'semesters'
+        db_table = 'semester'
         unique_together = ('classes', 'semester')
 
     def __str__(self):

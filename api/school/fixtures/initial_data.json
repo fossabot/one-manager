@@ -1,0 +1,20 @@
+[
+    {
+        "model":"school.school",
+        "pk":1,
+        "fields":{
+            "name":"Test School 1",
+            "address":"Test Address 1",
+            "homepage":"https://test1.com"
+        }
+    },
+    {
+        "model":"school.school",
+        "pk":2,
+        "fields":{
+            "name":"Test School 2",
+            "address":"Test Address 2",
+            "homepage":"https://test2.com"
+        }
+    }
+]

@@ -1,6 +1,6 @@
 from rest_framework import viewsets
-from classes.models import Classes, Semesters
-from classes.serializers import ClassesSerializer, SemestersSerializer
+from classes.models import Classes, Semester
+from classes.serializers import ClassesSerializer, SemesterSerializer
 
 
 class ClassesViewSet(viewsets.ModelViewSet):
@@ -9,5 +9,5 @@ class ClassesViewSet(viewsets.ModelViewSet):
 
 
 class SemesterViewSet(viewsets.ModelViewSet):
-    queryset = Semesters.objects.all()
-    serializer_class = SemestersSerializer
+    queryset = Semester.objects.all()
+    serializer_class = SemesterSerializer

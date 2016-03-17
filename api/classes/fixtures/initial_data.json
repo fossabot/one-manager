@@ -1,0 +1,58 @@
+[
+    {
+        "model":"classes.classes",
+        "pk":1,
+        "fields":{
+            "school":1,
+            "teacher":1,
+            "year":2016,
+            "grade":1,
+            "classes": "1",
+            "classes_name":"Test class 1"
+        }
+    },
+    {
+        "model":"classes.classes",
+        "pk":2,
+        "fields":{
+            "school":1,
+            "teacher":1,
+            "year":2016,
+            "grade":1,
+            "classes": "2",
+            "classes_name":"Test class 2"
+        }
+    },
+    {
+        "model":"classes.semester",
+        "pk":1,
+        "fields":{
+            "classes":1,
+            "semester":"1 Semester 1"
+        }
+    },
+    {
+        "model":"classes.semester",
+        "pk":2,
+        "fields":{
+            "classes":1,
+            "semester":"1 Semester 2"
+        }
+    },
+    {
+        "model":"classes.semester",
+        "pk":3,
+        "fields":{
+            "classes":2,
+            "semester":"2 Semester 1"
+        }
+    },
+    {
+        "model":"classes.semester",
+        "pk":4,
+        "fields":{
+            "classes":2,
+            "semester":"2 Semester 2"
+        }
+    }
+]
