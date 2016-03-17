@@ -2,8 +2,7 @@
 from __future__ import unicode_literals
 
 from datetime import datetime
-
-from django.contrib.auth.models import User
+from django.conf import settings
 from django.db import models
 from school.models import School
 
@@ -14,7 +13,7 @@ class Classes(models.Model):
         YEAR_CHOICES.append((r, r))
 
     school = models.ForeignKey(School, related_name='classes')
-    teacher = models.ForeignKey(User, related_name='classes')
+    teacher = models.ForeignKey(settings.AUTH_USER_MODEL, related_name='classes')
     year = models.PositiveSmallIntegerField(choices=YEAR_CHOICES, default=datetime.now().year, null=False)
     grade = models.CharField(max_length=10, null=False)
     classes = models.CharField(max_length=10, null=False)

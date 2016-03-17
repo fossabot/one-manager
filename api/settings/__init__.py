@@ -55,7 +55,7 @@ INSTALLED_APPS += [
 ]
 
 INSTALLED_APPS += [
-    'login',
+    'accounts',
     'school',
     'classes',
     'student',
@@ -143,6 +143,8 @@ AUTH_PASSWORD_VALIDATORS = [
     },
 ]
 
+AUTH_USER_MODEL = 'accounts.OneManagerUser'
+AUTH_PROFILE_MODULE = 'accounts.OneManagerUserProfile'
 
 # Internationalization
 # https://docs.djangoproject.com/en/1.9/topics/i18n/

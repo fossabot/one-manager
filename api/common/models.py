@@ -4,6 +4,21 @@ from django.db import models
 from classes.models import Semester
 
 
+class ContactBase(models.Model):
+    CONTACT_TYPE = (
+        ('H', 'Home'),
+        ('M', 'Mobile'),
+        ('O', 'Other'),
+        ('E', 'Email'),
+    )
+
+    contact_type = models.CharField(max_length=2, choices=CONTACT_TYPE, null=False)
+    contact = models.CharField(max_length=50, null=False)
+
+    class Meta:
+        abstract = True
+
+
 class CodeSubject(models.Model):
     code = models.CharField(max_length=10, db_index=True)
     name = models.CharField(max_length=50)

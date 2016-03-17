@@ -1,23 +1,9 @@
 from __future__ import unicode_literals
 
 from django.db import models
-from django.contrib.auth.models import User
+from django.conf import settings
+from common.models import ContactBase
 from classes.models import Classes, Semester
-
-
-class ContactBase(models.Model):
-    CONTACT_TYPE = (
-        ('H', 'Home'),
-        ('M', 'Mobile'),
-        ('O', 'Other'),
-        ('E', 'Email'),
-    )
-
-    contact_type = models.CharField(max_length=2, choices=CONTACT_TYPE, null=False)
-    contact = models.CharField(max_length=50, null=False)
-
-    class Meta:
-        abstract = True
 
 
 class Student(models.Model):
@@ -31,7 +17,7 @@ class Student(models.Model):
         ('T', 'Transferred'),
     )
 
-    user = models.ForeignKey(User, null=True, default=None)
+    user = models.ForeignKey(settings.AUTH_USER_MODEL, null=True, default=None)
     classes = models.ForeignKey(Classes, related_name='student')
     number = models.PositiveSmallIntegerField(null=True)
     name = models.CharField(max_length=100)
@@ -71,7 +57,7 @@ class StudentFamily(models.Model):
         ('E', 'ETC'),
     )
 
-    user = models.ForeignKey(User, null=True, default=None)
+    user = models.ForeignKey(settings.AUTH_USER_MODEL, null=True, default=None)
     student = models.ForeignKey(Student, related_name='family')
     relationship = models.CharField(max_length=2, choices=RELATIONSHIP_CHOICES)
     name = models.CharField(max_length=50)
@@ -81,10 +67,8 @@ class StudentFamily(models.Model):
 
 
 class StudentFamilyProfile(models.Model):
-    student_family = models.ForeignKey(StudentFamily, related_name='profile')
+    family = models.ForeignKey(StudentFamily, related_name='profile')
     address = models.CharField(max_length=255)
-    tel = models.CharField(max_length=20)
-    email = models.EmailField(max_length=50)
     uniqueness = models.TextField()
 
     class Meta:
@@ -92,7 +76,7 @@ class StudentFamilyProfile(models.Model):
 
 
 class StudentFamilyContact(ContactBase):
-    student = models.ForeignKey(StudentFamily, related_name='contact')
+    family = models.ForeignKey(StudentFamily, related_name='contact')
 
     class Meta:
         db_table = 'student_family_contact'

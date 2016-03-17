@@ -1,33 +1,24 @@
-"""api URL Configuration
-
-The `urlpatterns` list routes URLs to views. For more information please see:
-    https://docs.djangoproject.com/en/1.9/topics/http/urls/
-Examples:
-Function views
-    1. Add an import:  from my_app import views
-    2. Add a URL to urlpatterns:  url(r'^$', views.home, name='home')
-Class-based views
-    1. Add an import:  from other_app.views import Home
-    2. Add a URL to urlpatterns:  url(r'^$', Home.as_view(), name='home')
-Including another URLconf
-    1. Import the include() function: from django.conf.urls import url, include
-    2. Add a URL to urlpatterns:  url(r'^blog/', include('blog.urls'))
-"""
 from django.conf.urls import url, include
 from django.contrib import admin
-from rest_framework_nested.routers import DefaultRouter, SimpleRouter, NestedSimpleRouter
-from login.views import UserViewSet
+from rest_framework_nested.routers import DefaultRouter, SimpleRouter, NestedSimpleRouter, LookupMixin
+from accounts.views import UserViewSet, UserProfileViewSet, UserContactViewSet
 from school.views import SchoolViewSet
 from classes.views import ClassesViewSet, SemesterViewSet
 from student.views import StudentViewSet
 
 root_router = DefaultRouter()
-root_router.register(r'users', UserViewSet)
+root_router.register(r'user', UserViewSet)
 root_router.register(r'school', SchoolViewSet)
 root_router.register(r'classes', ClassesViewSet)
 root_router.register(r'semester', SemesterViewSet)
 root_router.register(r'student', StudentViewSet)
 
+user_router = SimpleRouter()
+user_router.register('user', UserViewSet, base_name='user')
+# user_profile_router = NestedSimpleRouter(user_router, 'user', lookup='user')
+# user_profile_router.register('profile', UserProfileViewSet, base_name='user-profile')
+user_contact_router = NestedSimpleRouter(user_router, 'user', lookup='user')
+user_contact_router.register('contact', UserContactViewSet, base_name='user-contact')
 
 school_router = SimpleRouter()
 school_router.register('school', SchoolViewSet)
@@ -52,6 +43,9 @@ urlpatterns = [
     url(r'^docs/swagger/', include('rest_framework_swagger.urls')),
     url(r'^docs/drf/', include('rest_framework_docs.urls')),
     url(r'^api/', include(root_router.urls)),
+    url(r'^api/', include(user_router.urls)),
+    # url(r'^api/', include(user_profile_router.urls)),
+    url(r'^api/', include(user_contact_router.urls)),
     url(r'^api/', include(school_router.urls)),
     url(r'^api/', include(school_classes_router.urls)),
     url(r'^api/', include(school_classes_semester_router.urls)),

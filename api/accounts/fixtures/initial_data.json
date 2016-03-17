@@ -1,0 +1,34 @@
+[
+    {
+        "model":"accounts.onemanageruser",
+        "pk":1,
+        "fields":{
+            "password":"pbkdf2_sha256$24000$arUyUbDlKs9l$Esst+gFa27MYkxurz9w8iO6OnsblKt68PKl42jX/EmU=",
+            "last_login":null,
+            "email":"kucuny@gmail.com",
+            "first_name":"Kookheon",
+            "last_name":"Kwon",
+            "is_teacher":true,
+            "is_student":true,
+            "is_parent":true,
+            "is_active":true,
+            "is_admin":true
+        }
+    },
+    {
+        "model":"accounts.onemanageruser",
+        "pk":2,
+        "fields":{
+            "password":"pbkdf2_sha256$24000$hHSLHz4PGAom$iKSRGoxinzkmY5g8+vLe8oqcO2hyQeWxzImF/Tr6y/w=",
+            "last_login":null,
+            "email":"gprnr1004@gmail.com",
+            "first_name":"Hyejeong",
+            "last_name":"Park",
+            "is_teacher":true,
+            "is_student":true,
+            "is_parent":true,
+            "is_active":true,
+            "is_admin":true
+        }
+    }
+]
