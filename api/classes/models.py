@@ -42,7 +42,7 @@ class Semester(models.Model):
         unique_together = ('classes', 'semester')
 
     def __str__(self):
-        return '<Classes - %s학교 %d년 %s학년 %s반 (%s) %s학기>' % (
+        return '<Semester - %s학교 %d년 %s학년 %s반 (%s) %s학기>' % (
             self.classes.school.name,
             self.classes.year,
             self.classes.grade,
