@@ -8,6 +8,8 @@ urlpatterns = [
     url(r'^docs/swagger/', include('rest_framework_swagger.urls')),
     url(r'^docs/drf/', include('rest_framework_docs.urls')),
     url(r'^api/', include('accounts.urls')),
-    url(r'^api/', include('school.urls')),
     url(r'^api/', include('classes.urls')),
+    url(r'^api/', include('school.urls')),
+    url(r'^api/', include('student.urls')),
 ]
+
