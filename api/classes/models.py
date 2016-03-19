@@ -9,7 +9,7 @@ from school.models import School
 
 class Classes(models.Model):
     YEAR_CHOICES =[]
-    for r in xrange(datetime.now().year, 1999, -1):
+    for r in range(datetime.now().year, 1999, -1):
         YEAR_CHOICES.append((r, r))
 
     school = models.ForeignKey(School, related_name='classes')
