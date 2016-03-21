@@ -12,5 +12,5 @@ class School(models.Model):
     class Meta:
         db_table = 'school'
 
-    def __str__(self):
+    def __unicode__(self):
         return '<School - Name : %s>' % self.name

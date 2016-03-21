@@ -10,6 +10,8 @@ urlpatterns = [
     url(r'^api/', include('accounts.urls')),
     url(r'^api/', include('classes.urls')),
     url(r'^api/', include('school.urls')),
+    url(r'^api/', include('score.urls')),
     url(r'^api/', include('student.urls')),
+    url(r'^api/code/', include('common.urls')),
 ]
 

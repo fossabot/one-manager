@@ -20,20 +20,14 @@ class ContactBase(models.Model):
 
 
 class CodeSubject(models.Model):
-    code = models.CharField(max_length=10, db_index=True)
-    name = models.CharField(max_length=50)
+    korean = models.CharField(max_length=100, default='')
+    english = models.CharField(max_length=255, default='')
 
     class Meta:
         db_table = 'code_subject'
 
-
-class CodeSubjectTemplate(models.Model):
-    semester = models.ForeignKey(Semester, related_name='code_subject_template')
-    code = models.ForeignKey(CodeSubject)
-
-    class Meta:
-        db_table = 'code_subject_template'
-        unique_together = ('semester', 'code',)
+    def __unicode__(self):
+        return '<CodeSubject(%d) : %s (%s)>' % (self.pk, self.korean, self.english)
 
 
 class CodeCategory(models.Model):

@@ -29,6 +29,9 @@ class Student(models.Model):
         db_table = 'student'
         ordering = ('number',)
 
+    def __unicode__(self):
+        return '<Student(%d) : Class - %s, Name - %s>' % (self.pk, self.classes.classes_name, self.name)
+
 
 class StudentProfile(models.Model):
     student = models.OneToOneField(Student, related_name='profile')
