@@ -1,18 +1,11 @@
-django
-django-filter
-django-crispy-forms
-django-guardian
-django-extensions
+Django==1.10.5
+django-extensions==1.7.6
 
-djangorestframework
-drf-extensions
-drf-nested-routers
-drfdocs
-django-rest-swagger
+djangorestframework==3.5.4
+django-filter==1.0.1
+django-crispy-forms==1.6.1
+django-guardian==1.4.6
+coreapi==2.2.4
+Markdown==2.6.8
 
-django-oauth-toolkit
-
-Markdown
-bpython
-
-django-debug-toolbar
+bpython==0.16
